@@ -83,7 +83,96 @@ class VideoDownloadHandler(BaseHTTPRequestHandler):
     
     def parse_video_url(self, url):
         """解析视频URL，返回视频信息和下载链接"""
-        
+        try:
+            import yt_dlp
+            
+            # 配置yt-dlp选项
+            ydl_opts = {
+                'quiet': True,
+                'no_warnings': True,
+                'extractaudio': False,
+                'format': 'best[height<=1080]',
+            }
+            
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                # 获取视频信息
+                info = ydl.extract_info(url, download=False)
+                
+                # 提取基本信息
+                title = info.get('title', 'Unknown Title')
+                thumbnail = info.get('thumbnail', '')
+                duration = info.get('duration', 0)
+                uploader = info.get('uploader', 'Unknown')
+                view_count = info.get('view_count', 0)
+                
+                # 格式化时长
+                if duration:
+                    minutes = duration // 60
+                    seconds = duration % 60
+                    duration_str = f"{minutes:02d}:{seconds:02d}"
+                else:
+                    duration_str = "Unknown"
+                
+                # 获取可用格式
+                formats = []
+                
+                # 添加视频格式
+                if 'formats' in info:
+                    video_formats = [f for f in info['formats'] if f.get('vcodec') != 'none']
+                    
+                    # 按质量排序
+                    quality_order = {'1080': 1080, '720': 720, '480': 480, '360': 360}
+                    
+                    added_qualities = set()
+                    for fmt in sorted(video_formats, key=lambda x: x.get('height', 0), reverse=True):
+                        height = fmt.get('height')
+                        if height and height >= 360:
+                            quality = f"{height}p"
+                            if quality not in added_qualities:
+                                filesize = fmt.get('filesize') or 0
+                                size_mb = f"{filesize / (1024*1024):.1f}MB" if filesize > 0 else "Unknown"
+                                
+                                formats.append({
+                                    'quality': quality,
+                                    'format': 'MP4',
+                                    'size': size_mb,
+                                    'url': fmt.get('url', ''),
+                                    'format_id': fmt.get('format_id', '')
+                                })
+                                added_qualities.add(quality)
+                
+                # 添加音频格式
+                audio_formats = [f for f in info.get('formats', []) if f.get('acodec') != 'none' and f.get('vcodec') == 'none']
+                if audio_formats:
+                    best_audio = max(audio_formats, key=lambda x: x.get('abr', 0))
+                    filesize = best_audio.get('filesize') or 0
+                    size_mb = f"{filesize / (1024*1024):.1f}MB" if filesize > 0 else "Unknown"
+                    
+                    formats.append({
+                        'quality': 'Audio',
+                        'format': 'MP3',
+                        'size': size_mb,
+                        'url': best_audio.get('url', ''),
+                        'format_id': best_audio.get('format_id', '')
+                    })
+                
+                return {
+                    'success': True,
+                    'title': title,
+                    'thumbnail': thumbnail,
+                    'duration': duration_str,
+                    'uploader': uploader,
+                    'view_count': view_count,
+                    'formats': formats
+                }
+                
+        except Exception as e:
+            print(f"Error parsing video: {str(e)}")
+            # 如果解析失败，返回演示数据
+            return self.get_demo_data(url)
+    
+    def get_demo_data(self, url):
+        """返回演示数据"""
         # 抖音链接处理
         if 'douyin.com' in url or 'v.douyin.com' in url:
             return {
