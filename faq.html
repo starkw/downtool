@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见问题解答 - DOWNTOOL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+
+        .header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f9fafb;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #374151;
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f3f4f6;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #6b7280;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">DOWNTOOL</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+                <li><a href="terms.html">服务条款</a></li>
+                <li><a href="privacy.html">隐私政策</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>常见问题解答</h1>
+        
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                DOWNTOOL 是什么，它提供什么服务？
+            </button>
+            <div class="faq-answer">
+                <p>DOWNTOOL 是一个在线视频下载服务，它简化了从各种网站（如 TikTok、YouTube、抖音等）下载音频、视频和其他文件的过程，使用户能够轻松便捷地进行下载。</p>
+                <p>我们的主要功能包括：</p>
+                <ul>
+                    <li>无水印视频下载</li>
+                    <li>支持多种画质（包括4K、1080P等）</li>
+                    <li>音频提取功能</li>
+                    <li>支持多个主流平台</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                您可以在移动设备上使用DOWNTOOL吗？
+            </button>
+            <div class="faq-answer">
+                <p>是的，DOWNTOOL是移动设备友好的。您可以在任何设备上访问和使用该服务，包括智能手机和平板电脑，轻松下载视频。</p>
+                <p>我们的网站采用响应式设计，能够自动适配不同屏幕尺寸，确保在移动设备上也能获得良好的使用体验。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                视频下载器支持哪些视频下载平台？
+            </button>
+            <div class="faq-answer">
+                <p>DOWNTOOL 支持多个主流视频平台，包括但不限于：</p>
+                <ul>
+                    <li>TikTok (tiktok.com)</li>
+                    <li>YouTube (youtube.com)</li>
+                    <li>抖音 (douyin.com)</li>
+                    <li>Instagram (instagram.com)</li>
+                    <li>Twitter (twitter.com)</li>
+                    <li>Facebook (facebook.com)</li>
+                    <li>哔哩哔哩 (bilibili.com)</li>
+                    <li>快手 (kuaishou.com)</li>
+                    <li>小红书 (xiaohongshu.com)</li>
+                    <li>微博 (weibo.com)</li>
+                </ul>
+                <p>我们会持续添加对更多平台的支持。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                如何使用DOWNTOOL下载视频？
+            </button>
+            <div class="faq-answer">
+                <p>使用DOWNTOOL下载视频非常简单：</p>
+                <ul>
+                    <li>1. 复制您想要下载的视频链接</li>
+                    <li>2. 将链接粘贴到我们网站的输入框中</li>
+                    <li>3. 点击"开始解析"按钮</li>
+                    <li>4. 等待解析完成，选择您需要的画质和格式</li>
+                    <li>5. 点击"下载"按钮即可保存到您的设备</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                下载的视频有水印吗？
+            </button>
+            <div class="faq-answer">
+                <p>不，��过DOWNTOOL下载的视频是无水印的。我们致力于为用户提供高质量、无水印的视频下载服务。</p>
+                <p>但请注意，某些平台的视频本身可能包含创作者添加的水印或标识，这些不是我们的服务添加的。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                支持哪些视频画质？
+            </button>
+            <div class="faq-answer">
+                <p>DOWNTOOL 支持多种视频画质选项：</p>
+                <ul>
+                    <li>4K (2160p) - 超高清画质</li>
+                    <li>1080p - 全高清画质</li>
+                    <li>720p - 高清画质</li>
+                    <li>480p - 标清画质</li>
+                    <li>360p - 流畅画质</li>
+                </ul>
+                <p>具体可用的画质选项取决于原视频的质量和平台支持。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                版权持有者信息？
+            </button>
+            <div class="faq-answer">
+                <p>DOWNTOOL 不托管文件或发布链接。我们仅提供视频链接解析服务，不存储任何视频内容。</p>
+                <p>如果您认为您的版权受到了侵犯，请直接联系托管网站，比如 YouTube、TikTok 等原始平台。</p>
+                <p>我们建议用户仅下载自己拥有版权或有权使用的内容，并遵守相关法律法规。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                下载速度慢怎么办？
+            </button>
+            <div class="faq-answer">
+                <p>如果遇到下载速度慢的问题，您可以尝试以下解决方案：</p>
+                <ul>
+                    <li>检查您的网络连接是否稳定</li>
+                    <li>尝试选择较低的画质选项</li>
+                    <li>避免在网络高峰期下载</li>
+                    <li>关闭其他占用带宽的应用程序</li>
+                    <li>稍后重试</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                服务是免费的吗？
+            </button>
+            <div class="faq-answer">
+                <p>是的，DOWNTOOL 的基础服务是完全免费的。您可以免费下载视频和音频文件。</p>
+                <p>我们致力于为用户提供免费、便捷的视频下载服务，无需注册或付费即可使用。</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 DOWNTOOL. 版权所有。</p>
+        <p>
+            <a href="terms.html">服务条款</a> | 
+            <a href="privacy.html">隐私政策</a> | 
+            <a href="mailto:support@downtool.com">联系我们</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            // 关闭所有其他FAQ
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.classList.remove('active');
+            });
+            
+            // 如果当前不是激活状态，则激活
+            if (!isActive) {
+                element.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
